@@ -12,7 +12,6 @@ bspc config normal_border_color  \#1A1E31
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config gapless_monocle      false
 
 bspc rule -a Chromium desktop='^1'
-bspc rule -a spectacle desktop='^3'
