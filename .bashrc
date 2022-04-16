@@ -11,5 +11,5 @@ export BROWSER="chromium"
 export FONTCONFIG_PATH="/etc/fonts"
 
 clear-cache() {
-	rm $HOME/.cache/chromium $HOME/.cache/mesa_shader_cache -r > /dev/null
+	sudo rm $HOME/.cache -r > /dev/null
 }
