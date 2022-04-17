@@ -99,22 +99,24 @@ float alpha = 0.8;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* One Dark (modified) */
-	"#404040",  /*  8: brblack  */
-	"#d96043",  /*  9: brred    */
-	"#7b9246",  /* 10: brgreen  */
-	"#d3a04d",  /* 11: bryellow */
-	"#6c99bb",  /* 12: brblue   */
-	"#e05eb7",  /* 13: brmagenta*/
-	"#7dd6cf",  /* 14: brcyan   */
-	"#f5f5f5",  /* 15: brwhite  */
-	"#404040",  /*  8: brblack  */
-	"#d96043",  /*  9: brred    */
-	"#7b9246",  /* 10: brgreen  */
-	"#d3a04d",  /* 11: bryellow */
-	"#6c99bb",  /* 12: brblue   */
-	"#e05eb7",  /* 13: brmagenta*/
-	"#7dd6cf",  /* 14: brcyan   */
-	"#f5f5f5",  /* 15: brwhite  */
+	"#19161c",  // BK 404040
+	"#d96043",  // R d96043
+	"#7b9246",  // G 7b9246
+	"#d3a04d",  // Y d3a04d
+	"#6c99bb",  // B 6c99bb
+	"#e05eb7",  // M e05eb7
+	"#7dd6cf",  // C 7dd6cf
+	"#f5f5f5",  // W f5f5f5
+
+	// BR
+	"#19161c",  // BK 404040
+	"#d96043",  // R d96043
+	"#7b9246",  // G 7b9246
+	"#d3a04d",  // Y d3a04d
+	"#6c99bb",  // B 6c99bb
+	"#e05eb7",  // M e05eb7
+	"#7dd6cf",  // C 7dd6cf
+	"#f5f5f5",  // W f5f5f5
 
 	[255] = 0,
 
@@ -122,7 +124,7 @@ static const char *colorname[] = {
 	"#cccccc",
 	"#555555",
 	"gray90", /* default foreground colour */
-	"#12172E", /* default background colour */
+	"#3a294a", /* default background colour */
 };
 
 
