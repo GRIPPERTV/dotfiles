@@ -6,14 +6,14 @@ static const int topbar				= 1;
 
 // Fonts
 static const char *fonts[] = {
-	"JetBrains Mono ExtraBold:size=9"
+	"Source Code Pro:size=9"
 };
 
 // Colors
-static const char Border[]		= "#1A1E31";
+static const char Border[]		= "#554069";
 static const char Foreground1[]	= "#C5C8C6";
-static const char Foreground2[]	= "#0049a8";
-static const char Background[]	= "#12172E";
+static const char Foreground2[]	= "#de6fed";
+static const char Background[]	= "#3a294a";
 static const char *colors[][3]	= {
 	[SchemeNorm] = {Foreground1, Background, Border},
 	[SchemeSel]  = {Foreground2, Background, Border},
@@ -52,7 +52,7 @@ static const char *terminal[]	= {"st",	NULL};
 
 static Key keys[] = {
 //	Modifier			Key					Function		Argument
-	{MODKEY,			XK_d,				spawn,			SHCMD("rlaunch --color0 '#12172e' --color1 '#0049a8' --color2 '#C5C8C6' --color3 '#C5C8C6' --font 'JetBrains Mono ExtraBold:size=9' --height 19 --terminal st")																	},
+	{MODKEY,			XK_d,				spawn,			SHCMD("rlaunch --color0 '#3a294a' --color1 '#1e262e' --color2 '#C5C8C6' --color3 '#C5C8C6' --font 'Source Code Pro:size=9' --height 19 -t st")																	},
 	{MODKEY,			XK_Print,			spawn,			SHCMD("scrot -f -s -q 100 $HOME/'Pictures/%Y-%m-%d_%H%M%S.png' -e 'xclip -selection clipboard -t image/png -i $f'")	},
 	{MODKEY|ShiftMask,	XK_q,				quit,			{0}					},
 	{MODKEY,			XK_Return,			spawn,			{.v = terminal}		},
