@@ -13,7 +13,7 @@ paru -Syu
 
 echo "Installing theme and fonts..."
 paru yaru-gtk-theme
-paru jetbrains-mono
+paru ttf-jetbrains-mono
 paru ttf-twemoji
 
 echo "Caching all fonts"
