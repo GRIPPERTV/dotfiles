@@ -1,38 +1,53 @@
-# Configure and update pacman
-mv pacman.conf /etc/
-pacman -Syu
+echo "Configuring and updating pacman..."
+sudo mv pacman.conf /etc/
+sudo pacman -Syu
 
-# Install drivers, libs, compilers and steam
-pacman -S base-devel mesa lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader elogind rust go python xorg xorg-init fontconfig pulseaudio gamemode lib32-gamemode steam paru
+echo "Installing base, compilers, drivers, libs and steam..."
+sudo pacman -S --needed base-devel go rust python mesa lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader gamemode lib32-gamemode lib32-fontconfig fontconfig pulseaudio xorg xorg-xinit steam
 
-# Install theme/fonts and cache fonts
-paru yaru
-paru helvetica
-paru nerd-font
-paru jetbrains
+echo "Installing and updating paru..."
+cd $HOME && mkdir .pkg && git clone https://aur.archlinux.org/paru.git
+cd paru && makepkg -si
+cd .. && sudo rm paru -r
+paru -Syu
+
+echo "Installing theme and fonts..."
+paru yaru-gtk-theme
+paru jetbrains-mono
+paru ttf-twemoji
+
+echo "Caching all fonts"
 fc-cache -fv
 
-# Download st, dwm anddwmblocks
-# Don't install yet or it will use default config.def.h
-mkdir $HOME/.pkg
+echo "Downloading st, dwm and dwmblocks..."
 cd $HOME/.pkg
 git clone https://git.suckless.org/st
 git clone https://git.suckless.org/dwm
 git clone https://github.com/torrinfail/dwmblocks
 
-# Setup dotfiles
+echo "Installing st patches..."
+cd st
+curl 'https://st.suckless.org/patches/scrollback/st-scrollback-0.8.5.diff' --output 3.diff
+curl 'https://st.suckless.org/patches/clipboard/st-clipboard-20180309-c5ba9c0.diff' --output 1.diff
+curl 'https://st.suckless.org/patches/scrollback/st-scrollback-mouse-20220127-2c5edf2.diff' --output 4.diff
+curl 'https://st.suckless.org/patches/dynamic-cursor-color/st-dynamic-cursor-color-0.8.4.diff' --output 2.diff
+patch --merge -i 1.diff && patch --merge -i 2.diff && patch --merge -i 3.diff && patch --merge -i 4.diff
+
+echo "Installing dwm patches..."
+cd ../dwm && curl 'https://dwm.suckless.org/patches/notitle/dwm-notitle-20210715-138b405.diff' --output 1.diff && patch --merge -i 1.diff
+
+echo "Creating dotfiles..."
 cd $HOME/dotfiles
-mv *.* $HOME
-rm $HOME/.scripts/install.sh $HOME/.scripts/pacman.conf
+sudo mv * $HOME
 
-# Now can install st, dwm and dwmblocks
+echo "Installing st, dwm and dwmblocks..."
 cd $HOME/.pkg
-cd st && make install
-cd ../dwm && make install
-cd ../dwmblocks && make install
+cd st && sudo make clean install
+cd ../dwm && sudo make clean install
+cd ../dwmblocks && sudo make clean install
 
-# Install misc
-pacman -S htop neofetch
+echo "Installing htop and neofetch..."
+sudo pacman -S htop neofetch
 
 # Done!
-rm dotfiles
+echo "Done!"
