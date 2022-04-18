@@ -47,7 +47,7 @@ cd ../dwm && sudo make clean install
 cd ../dwmblocks && sudo make clean install
 
 echo "Installing htop and neofetch..."
-sudo pacman -S htop neofetch
+sudo pacman -S --needed htop neofetch
 
 # Done!
 echo "Done!"
