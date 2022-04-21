@@ -52,7 +52,7 @@ sudo pacman -S --needed zsh scrot xclip
 paru rlaunch
 
 echo "Installing Oh My Zsh (default theme)..."
-cd &HOME && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+cd $HOME && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Installing steam, htop and neofetch..."
 sudo pacman -S --needed steam htop neofetch
