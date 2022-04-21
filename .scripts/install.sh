@@ -2,8 +2,8 @@ echo "Configuring and updating pacman..."
 sudo mv pacman.conf /etc/
 sudo pacman -Syu
 
-echo "Installing base, compilers, drivers, libs and steam..."
-sudo pacman -S --needed base-devel go rust python mesa lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader gamemode lib32-gamemode lib32-fontconfig fontconfig pulseaudio xorg xorg-xinit steam
+echo "Installing base, compilers, drivers and ibs"
+sudo pacman -S --needed base-devel go rust python mesa lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader gamemode lib32-gamemode lib32-fontconfig fontconfig pulseaudio xorg xorg-xinit
 
 echo "Installing and updating paru..."
 cd $HOME && mkdir .pkg && git clone https://aur.archlinux.org/paru.git
@@ -38,7 +38,8 @@ cd ../dwm && curl 'https://dwm.suckless.org/patches/notitle/dwm-notitle-20210715
 
 echo "Creating dotfiles..."
 cd $HOME/dotfiles
-sudo mv * $HOME
+sudo mv .* $HOME
+sudo cp .pkg .scripts $HOME
 
 echo "Installing st, dwm and dwmblocks..."
 cd $HOME/.pkg
@@ -46,8 +47,15 @@ cd st && sudo make clean install
 cd ../dwm && sudo make clean install
 cd ../dwmblocks && sudo make clean install
 
-echo "Installing htop and neofetch..."
-sudo pacman -S --needed htop neofetch
+echo "Installing needed dotfiles packages..."
+sudo pacman -S --needed zsh scrot xclip
+paru rlaunch
+
+echo "Installing Oh My Zsh (default theme)..."
+cd &HOME && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "Installing steam, htop and neofetch..."
+sudo pacman -S --needed steam htop neofetch
 
 # Done!
 echo "Done!"
