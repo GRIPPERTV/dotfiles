@@ -52,7 +52,7 @@ static const char *terminal[]	= {"st",	NULL};
 
 static Key keys[] = {
 //	Modifier			Key					Function		Argument
-	{MODKEY,			XK_d,				spawn,			SHCMD("rlaunch --color0 '#3a294a' --color1 '#1e262e' --color2 '#C5C8C6' --color3 '#C5C8C6' --font 'Source Code Pro:size=9' --height 19 -t st")																	},
+	{MODKEY,			XK_d,				spawn,			SHCMD("rlaunch --color0 '#3a294a' --color1 '#1e262e' --color2 '#C5C8C6' --color3 '#C5C8C6' --font 'Source Code Pro:size=9' --height 18 -t st")																	},
 	{MODKEY,			XK_Print,			spawn,			SHCMD("scrot -f -s -q 100 $HOME/'Pictures/%Y-%m-%d_%H%M%S.png' -e 'xclip -selection clipboard -t image/png -i $f'")	},
 	{MODKEY|ShiftMask,	XK_q,				quit,			{0}					},
 	{MODKEY,			XK_Return,			spawn,			{.v = terminal}		},
