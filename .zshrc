@@ -9,11 +9,11 @@ export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="micro"
 export BROWSER="chromium"
 
-## Paths
+# Paths
 export FONTCONFIG_PATH="/etc/fonts"
 export XDG_CONFIG_HOME="$HOME/.config"
 
-## Idk
+# Locale
 export LC_ALL="en_US.UTF-8"
 
 ###############
