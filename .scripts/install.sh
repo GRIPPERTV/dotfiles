@@ -56,5 +56,8 @@ cd $HOME && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/to
 echo "Installing steam, ungoogled-chromium, htop and neofetch..."
 sudo pacman -S --needed steam htop neofetch && paru ungoogled
 
+echo "Clearing pacman/paru"
+sudo pacman -R $(pacman -Qtdq) && paru -Syu
+
 # Done!
 echo "Done!"
