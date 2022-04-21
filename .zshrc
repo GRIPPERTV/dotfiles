@@ -19,7 +19,7 @@ export LC_ALL="en_US.UTF-8"
 ###############
 ### Aliases ###
 ###############
-alias rmstuff="cd $HOME && rm -r .zsh_history .lesshst .cargo go .cache"
+alias rmstuff="cd $HOME && sudo rm -r .zsh_history .lesshst .cargo go .cache"
 
 ###############
 ### Settings ##
