@@ -48,14 +48,13 @@ cd ../dwm && sudo make clean install
 cd ../dwmblocks && sudo make clean install
 
 echo "Installing needed dotfiles packages..."
-sudo pacman -S --needed zsh scrot xclip
-paru rlaunch
+sudo pacman -S --needed zsh scrot xclip && paru rlaunch
 
 echo "Installing Oh My Zsh (default theme)..."
 cd $HOME && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo "Installing steam, htop and neofetch..."
-sudo pacman -S --needed steam htop neofetch
+echo "Installing steam, ungoogled-chromium, htop and neofetch..."
+sudo pacman -S --needed steam htop neofetch && paru ungoogled
 
 # Done!
 echo "Done!"
