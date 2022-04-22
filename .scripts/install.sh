@@ -48,7 +48,7 @@ cd ../dwm && sudo make clean install
 cd ../dwmblocks && sudo make clean install
 
 echo "Installing needed dotfiles packages..."
-sudo pacman -S --needed zsh scrot xclip && paru rlaunch
+sudo pacman -S --needed feh zsh scrot xclip && paru rlaunch
 
 echo "Installing Oh My Zsh (default theme)..."
 cd $HOME && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
