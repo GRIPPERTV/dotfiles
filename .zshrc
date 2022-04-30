@@ -19,7 +19,24 @@ export LC_ALL="en_US.UTF-8"
 ###############
 ### Aliases ###
 ###############
-alias rmstuff="cd $HOME && sudo rm -r .zsh_history .lesshst .cargo go .cache"
+#alias X=Y
+
+###############
+## Functions ##
+###############
+rmstuff() {
+	cd $HOME
+
+	# Remove unneeded files
+	sudo rm -r .cache .cargo go .mono .pki .Xauthority .zcompdump-Artix-5.8.1 .zsh_history .lesshst .pulse-cookie .fehbg
+
+	# Clear packages
+	echo y | sudo pacman -R $(pacman -Qtdq)
+}
+
+search() {
+	grep -iIHrn --color=always "$1" . | less -r
+}
 
 ###############
 ### Settings ##
