@@ -1,31 +1,24 @@
-echo "Configuring and updating pacman..."
-sudo mv pacman.conf /etc/
-sudo pacman -Syu
+# Install paru, configure pacman and update mirrors
+cd $HOME && mkdir .pkg && git clone https://aur.archlinux.org/paru.git
+cd paru && makepkg -si && cd .. && sudo rm paru -r
+sudo mv pacman.conf /etc/ && paru -Syu
 
-echo "Installing base, compilers, drivers and ibs"
+# Install base, compilers, drivers and libs
 sudo pacman -S --needed base-devel go rust python mesa lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader gamemode lib32-gamemode lib32-fontconfig fontconfig pulseaudio xorg xorg-xinit
 
-echo "Installing and updating paru..."
-cd $HOME && mkdir .pkg && git clone https://aur.archlinux.org/paru.git
-cd paru && makepkg -si
-cd .. && sudo rm paru -r
-paru -Syu
-
-echo "Installing theme and fonts..."
+# Install theme, fonts and cache all fonts
 paru yaru-gtk-theme
 paru ttf-jetbrains-mono
 paru ttf-twemoji
-
-echo "Caching all fonts"
 fc-cache -fv
 
-echo "Downloading st, dwm and dwmblocks..."
+# Download st, dwm, dwmblocks and dwl
 cd $HOME/.pkg
 git clone https://git.suckless.org/st
 git clone https://git.suckless.org/dwm
 git clone https://github.com/torrinfail/dwmblocks
 
-echo "Installing st patches..."
+# Install st patches (scrollback-mouse, clipboard and dynamic cursor color)
 cd st
 curl 'https://st.suckless.org/patches/scrollback/st-scrollback-0.8.5.diff' --output 3.diff
 curl 'https://st.suckless.org/patches/clipboard/st-clipboard-20180309-c5ba9c0.diff' --output 1.diff
@@ -33,31 +26,35 @@ curl 'https://st.suckless.org/patches/scrollback/st-scrollback-mouse-20220127-2c
 curl 'https://st.suckless.org/patches/dynamic-cursor-color/st-dynamic-cursor-color-0.8.4.diff' --output 2.diff
 patch --merge -i 1.diff && patch --merge -i 2.diff && patch --merge -i 3.diff && patch --merge -i 4.diff
 
-echo "Installing dwm patches..."
+# Install dwm patch (no title)
 cd ../dwm && curl 'https://dwm.suckless.org/patches/notitle/dwm-notitle-20210715-138b405.diff' --output 1.diff && patch --merge -i 1.diff
 
-echo "Creating dotfiles..."
+# Install dwl patch (monitor-config)
+cd ../dwl && curl 'https://github.com/djpohly/dwl/compare/main...PalanixYT:monfig.patch' --output 1.diff && patch --merge -i 1.diff
+
+# Create dotfiles
 cd $HOME/dotfiles
 sudo mv .* $HOME
 sudo cp .pkg .scripts $HOME
 
-echo "Installing st, dwm and dwmblocks..."
+# Install st, dwm, dwmblocks and dwl
 cd $HOME/.pkg
-cd st && sudo make clean install
-cd ../dwm && sudo make clean install
-cd ../dwmblocks && sudo make clean install
+cd st && sudo make install
+cd ../dwm && sudo make install
+cd ../dwmblocks && sudo make install
+cd ../dwl && sudo make install
 
-echo "Installing needed dotfiles packages..."
+# Install needed dotfiles packages
 sudo pacman -S --needed feh zsh scrot xclip && paru rlaunch
 
-echo "Installing Oh My Zsh (default theme)..."
+# Install Oh My Zsh (default theme)
 cd $HOME && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo "Installing steam, ungoogled-chromium, htop and neofetch..."
+# Install steam, htop, neofetch and ungoogled
 sudo pacman -S --needed steam htop neofetch && paru ungoogled
 
-echo "Clearing pacman/paru"
-sudo pacman -R $(pacman -Qtdq) && paru -Syu
+# Clear pacman/paru
+sudo pacman -R $(pacman -Qtdq) && paru -Scc
 
 # Done!
 echo "Done!"
