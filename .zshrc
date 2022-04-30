@@ -30,8 +30,9 @@ rmstuff() {
 	# Remove unneeded files
 	sudo rm -r .cache .cargo go .mono .pki .Xauthority .zcompdump-Artix-5.8.1 .zsh_history .lesshst .pulse-cookie .fehbg
 
-	# Clear packages
+	# Remove cached packages and diffs
 	echo y | sudo pacman -R $(pacman -Qtdq)
+	paru -Scc
 }
 
 search() {
