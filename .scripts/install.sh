@@ -21,7 +21,7 @@ cd paru && makepkg -si && cd .. && sudo rm -r paru
 sudo mv pacman.conf /etc/ && paru -Syu
 
 # Install base, compilers, drivers and libs
-sudo pacman -S --needed base-devel go rust python mesa lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader intel-media-driver intel-media-sdk gamemode lib32-gamemode lib32-fontconfig fontconfig pulseaudio xorg xorg-xinit
+sudo pacman -S --needed base-devel go rust python mesa lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader intel-media-driver intel-media-sdk hdparm gamemode lib32-gamemode lib32-fontconfig fontconfig pulseaudio xorg xorg-xinit
 
 # Install theme, fonts and cache all fonts
 paru yaru-gtk-theme
