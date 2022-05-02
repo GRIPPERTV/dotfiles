@@ -1,0 +1,11 @@
+#!/bin/sh
+hdparm -B 255 /dev/sda > /dev/null
+
+# Setup Zram
+modprobe zram
+echo 4G > /sys/block/zram0/disksize
+mkswap /dev/zram0 > /dev/null
+swapon /dev/zram0
+
+# Prevents Runit from looping this script
+exec pause
