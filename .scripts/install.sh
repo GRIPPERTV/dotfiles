@@ -1,6 +1,6 @@
 # Add my runit service
 sudo mv user /etc/runit/sv/
-ln -s /etc/runit/sv/user /etc/runit/runsvdir/current/
+sudo ln -s /etc/runit/sv/user /etc/runit/runsvdir/default/
 
 # Set GRUB_CMDLINE_LINUX_DEFAULT and update grub config
 sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=0 quiet mitigations=off zswap.enabled=0 nowatchdog"/' /etc/default/grub
